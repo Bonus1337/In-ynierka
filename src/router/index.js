@@ -34,6 +34,7 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: () => import('../views/RegisterView.vue'),
+      beforeEnter: notLoggedInGuard
     },
           {
       path: '/dashboard',
@@ -41,7 +42,8 @@ export default new Router({
       beforeEnter: loggedInGuard,
             component: () => import('../views/DashBoard.vue'),
             children: [
-        {path: '', component: () => import('../views/Dashboard/HomeView.vue')}
+              { path: '', component: () => import('../views/Dashboard/HomeView.vue') },
+              {path: 'users', component: () => import('../views/Dashboard/UsersView.vue')}
       ]
     }
   ]
